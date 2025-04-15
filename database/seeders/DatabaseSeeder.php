@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
         Unite::factory(10)->create();
         Marque::factory(10)->create();
         Famille::factory(10)->create();
@@ -29,9 +29,13 @@ class DatabaseSeeder extends Seeder
         // Commande::factory(10)->create();
         CommandeDetail::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
+        // User::factory(20)->create([
+        //     'name' => fake()->name(),
+        //     'email' => fake()->unique()->safeEmail(),
         // ]);
     }
 }

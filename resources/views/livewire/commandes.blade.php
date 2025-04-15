@@ -1,7 +1,7 @@
 <div class="row g-4">
     @forelse($commandes as $commande)
         <div class="col-12">
-            <div class="card shadow-sm border-0">
+            <div class="card shadow border-0">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center" x-data="{ showDetails: false }"
                         style="cursor: pointer">
@@ -82,7 +82,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex gap-2 justify-content-end">
+                        {{-- <div class="d-flex gap-2 justify-content-end">
                             <button class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-printer"></i> Imprimer
                             </button>
@@ -91,7 +91,7 @@
                                     <i class="bi bi-credit-card"></i> Marquer comme Payée
                                 </button>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
