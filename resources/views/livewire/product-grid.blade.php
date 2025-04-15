@@ -1,10 +1,10 @@
-<div class="product-grid-container" onmousedown="handleMouseDownProduct(event)" onmouseup="handleMouseUpProduct(event)"
+<div class="product-grid-container pt-1" onmousedown="handleMouseDownProduct(event)" onmouseup="handleMouseUpProduct(event)"
     onmouseleave="handleMouseUpProduct(event)" onmousemove="handleMouseMoveProduct(event)">
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3" >
         <!-- Product Card -->
         @foreach ($products as $product)
         <div class="col">
-            <div class="card product-card h-100" wire:click="selectProduct({{ $product->id }})" style="cursor: pointer;">
+            <div class="card product-card h-100" wire:click="addToCart({{ $product->id }})" style="cursor: pointer;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
                         <span class="badge bg-primary">${{ number_format($product->prix_ht, 2) }}</span>

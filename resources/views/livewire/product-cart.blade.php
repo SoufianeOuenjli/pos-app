@@ -1,6 +1,9 @@
 <div class="product-list product-scroll mb-3" onmousedown="handleMouseDownProduct(event)"
     onmouseup="handleMouseUpProduct(event)" onmouseleave="handleMouseUpProduct(event)"
     onmousemove="handleMouseMoveProduct(event)">
+    {{-- <div class="cart-summary">
+        Items in cart: {{ $cartCount }} | Total: {{ number_format($cartTotal, 2) }}€
+    </div> --}}
     <!-- Your product table here -->
     <table class="table table-sm">
         <thead>
@@ -13,7 +16,8 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($cart as $index => $item)
+            @foreach ($cartItems as $index => $item)
+            {{-- @dd($item) --}}
                 <tr class="align-middle">
                     <td class="fw-medium">{{ $item['name'] }}</td>
                     <td>

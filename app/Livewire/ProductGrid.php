@@ -5,40 +5,32 @@ namespace App\Livewire;
 use App\Models\Article;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Services\CartService;
 
 class ProductGrid extends Component
 {
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
-
     public $search = '';
-
     protected $queryString = ['search'];
 
-    public function updatedSearch()
+    public function addToCart($productId)
     {
-        $this->resetPage();
-    }
+        $product = Article::findOrFail($productId);
 
-    public function selectProduct($id)
-    {
-        $product = Article::findOrFail($id);
-
-        $this->dispatch('productAdded', [
+        app(CartService::class)->addItem([
             'id' => $product->id,
             'name' => $product->nom,
             'price' => $product->prix_ht,
+            'qty' => 1
         ]);
+
+        $this->dispatch('cartUpdated');
     }
 
-    protected $listeners = ['updateSearch' => 'setSearch'];
+    // ... keep other methods the same ...
 
-    public function setSearch($value)
-    {
-        $this->search = $value;
-        $this->resetPage();
-    }
     public function render()
     {
         $products = Article::query()
@@ -46,6 +38,9 @@ class ProductGrid extends Component
             ->orWhere('code_barre', 'like', '%' . $this->search . '%')
             ->paginate(12);
 
-        return view('livewire.product-grid', compact('products'));
+        return view('livewire.product-grid', [
+            'products' => $products,
+            'cartCount' => app(CartService::class)->getCount()
+        ]);
     }
 }

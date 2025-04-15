@@ -3,56 +3,62 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Services\CartService;
 
 class ProductCart extends Component
 {
-    public $cart = [];
+    protected $listeners = ['cartUpdated' => '$refresh'];
 
-    protected $listeners = ['productAdded' => 'addProduct'];
-
-    public function addProduct($product)
+    public function getCartProperty()
     {
-        foreach ($this->cart as &$item) {
-            if ($item['id'] === $product['id']) {
-                $item['qty']++;
-                return;
-            }
-        }
-
-        $product['qty'] = 1;
-        $this->cart[] = $product;
+        return app(CartService::class)->getCart();
     }
 
-    public function incrementQty($index)
+    public function incrementQty($productId)
     {
-        $this->cart[$index]['qty']++;
-    }
+        $cartService = app(CartService::class);
+        $cart = $cartService->getCart();
 
-    public function decrementQty($index)
-    {
-        if ($this->cart[$index]['qty'] > 1) {
-            $this->cart[$index]['qty']--;
+        if (isset($cart[$productId])) {
+            $cartService->updateQty($productId, $cart[$productId]['qty'] + 1);
+            $this->dispatch('cartUpdated');
         }
     }
 
-    public function removeProduct($index)
+    public function decrementQty($productId)
     {
-        unset($this->cart[$index]);
-        $this->cart = array_values($this->cart); // reindex
+        $cartService = app(CartService::class);
+        $cart = $cartService->getCart();
+
+        if (isset($cart[$productId])) {
+            $newQty = max(1, $cart[$productId]['qty'] - 1);
+            $cartService->updateQty($productId, $newQty);
+            $this->dispatch('cartUpdated');
+        }
+    }
+
+    public function removeProduct($productId)
+    {
+        app(CartService::class)->removeItem($productId);
+        $this->dispatch('cartUpdated');
     }
 
     public function getSubTotalProperty()
     {
-        return collect($this->cart)->sum(fn($item) => $item['qty'] * $item['price']);
+        return app(CartService::class)->getSubTotal();
     }
 
-    public function getQtyProperty()
+    public function getTotalQtyProperty()
     {
-        return collect($this->cart)->sum('qty');
+        return app(CartService::class)->getCount();
     }
 
     public function render()
     {
-        return view('livewire.product-cart');
+        return view('livewire.product-cart', [
+            'cartItems' => $this->cart,
+            'subTotal' => $this->subTotal,
+            'totalQty' => $this->totalQty
+        ]);
     }
 }
