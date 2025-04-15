@@ -2,6 +2,7 @@
 
 use App\Models\Commande;
 use Illuminate\Support\Facades\Route;
+use Livewire\WithPagination;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,10 +10,8 @@ Route::get('/', function () {
 // Route::get('/commandes', function () {
 //     return view('commandes');
 // })->name('commandes');
-Route::get('/commandes', function () {
-    $commandes = Commande::with(['client', 'modeReglement', 'details.article'])
-                ->latest()
-                ->paginate(5);
 
-    return view('commandes', compact('commandes'));
+Route::get('/commandes', function () {
+
+    return view('commandes');
 })->name('commandes');

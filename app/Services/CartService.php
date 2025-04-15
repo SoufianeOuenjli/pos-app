@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\CommandeDetail;
 use Illuminate\Support\Facades\Session;
 
 class CartService
@@ -86,5 +87,19 @@ class CartService
     {
         Session::put(self::CART_KEY, $cart);
         Session::save();
+    }
+
+    public function saveToDatabase($commandeId): void
+    {
+        $cart = $this->getCart();
+        foreach ($cart as $item) {
+            CommandeDetail::create([
+                'article_id' => $item['id'],
+                'commande_id' => $commandeId,
+                'prix_ht' => $item['price'],
+                'quantite' => $item['qty'],
+            ]);
+        }
+
     }
 }

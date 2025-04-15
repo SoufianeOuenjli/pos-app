@@ -20,8 +20,14 @@ class ProductGrid extends Component
     protected $listeners = [
         'cartUpdated' => '$refresh',
         'brandFilterUpdated' => 'handleBrandFilter',
-        'categoryFilterUpdated' => 'handleCategoryFilter'
+        'categoryFilterUpdated' => 'handleCategoryFilter',
+        'updateSearch' => 'handleSearchUpdate',
     ];
+
+    public function handleSearchUpdate($value){
+        $this->search = $value;
+        $this->resetPage();
+    }
 
     public function handleBrandFilter($brandId)
     {
