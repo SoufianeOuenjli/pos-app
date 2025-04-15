@@ -43,6 +43,7 @@ class ArticleFactory extends Factory
             'products/2.png',
             'products/4.jpg',
             'products/5.jpg',
+            null,
         ];
 
         return [
