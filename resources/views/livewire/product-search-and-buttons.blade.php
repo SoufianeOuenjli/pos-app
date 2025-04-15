@@ -16,9 +16,9 @@
             <button class="btn btn-outline-primary btn-icon p-2" title="Cart">
                 <i class="bi bi-cart fs-5"></i>
             </button>
-            <button href="{{ route('commandes') }}" wire:navigate class="btn btn-outline-primary btn-icon p-2">
+            <a href="{{ route('commandes') }}" wire:navigate class="btn btn-outline-primary btn-icon p-2">
                 <i class="bi bi-list fs-5"></i>
-            </button>
+            </a>
         </div>
     </div>
 
