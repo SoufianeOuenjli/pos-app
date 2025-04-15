@@ -1,5 +1,5 @@
 <div class="row mb-3 g-3">
-    <div class="col-10">
+    <div class="col-11">
         <div class="input-group">
             <span class="input-group-text bg-transparent border-end-0">
                 <i class="bi bi-search"></i>
@@ -8,14 +8,35 @@
                 placeholder="Rechercher des produits...">
         </div>
     </div>
-    <div class="col-2">
+    <div class="col-1">
         <div class="d-flex gap-2">
-            <button class="btn btn-outline-primary btn-icon  p-2" title="En attente">
+            <button class="btn btn-outline-primary btn-icon  p-2" title="En attente" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <i class="bi bi-clock fs-5"></i>
             </button>
-            <button class="btn btn-outline-primary btn-icon p-2" title="Panier">
+            {{-- <button class="btn btn-outline-primary btn-icon p-2" title="Panier">
                 <i class="bi bi-cart fs-5"></i>
-            </button>
+            </button> --}}
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <a href="{{ route('commandes') }}" wire:navigate class="btn btn-outline-primary btn-icon p-2">
                 <i class="bi bi-list fs-5"></i>
             </a>

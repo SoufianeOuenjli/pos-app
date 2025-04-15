@@ -13,7 +13,8 @@ class CartActions extends Component
         $cartService = app(CartService::class);
         $cartService->clearCart();
         Session::flash('success', 'Cart cleared successfully.');
-        $this->dispatch('cartUpdated');
+        $this->dispatch('cartUpdated', type: 'success', title: 'Votre panier a été vide.');
+        // $this->dispatch('cartUpdated');
     }
 
     public function checkout(){
@@ -34,11 +35,12 @@ class CartActions extends Component
 
         $cartService->saveToDatabase($commande->id);
         $cartService->clearCart();
-        $this->dispatch('cartUpdated');
+        $this->dispatch('cartUpdated', type: 'success', title: 'Votre commande a été passée avec succès.');
 
         // Proceed to checkout logic here
         // For example, redirect to a checkout page or show a modal
-        Session::flash('success', 'Proceeding to checkout.');
+        session()->flash('success', 'Post successfully updated.');
+        // Session::flash('success', 'Proceeding to checkout.');
     }
     public function render()
     {

@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Add this in your head section -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @livewireStyles()
     <style>
         :root {
@@ -29,6 +30,12 @@
             border-color: var(--primary-border-color);
             color: var(--primary-text-hover-color);
             background-color: var(--primary-hover);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover) !important;
+            border-color: var(--primary-border-color) !important;
+            color: var(--primary-text-hover-color) !important;
         }
 
         body {
@@ -198,13 +205,6 @@
             <div class="col-md-4 left-panel p-3">
                 <!-- Client/Warehouse Selection -->
                 @livewire('client-warehouse-selector')
-
-                <!-- Product List -->
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
                 @livewire('product-cart')
 
                 <!-- Totals Section -->
@@ -292,20 +292,26 @@
             target.scrollTop = scrollTop - walk;
         }
 
+        window.addEventListener('cartUpdated', (event) => {
+            console.log();
+            if (event.detail.type) {
+                Swal.fire({
+                    toast: true,
+                    position: "bottom-end",
+
+                    icon: event.detail.type,
+                    title: event.detail.title,
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                });
+            }
+        });
+
 
 
     </script>
-    @if (session('success'))
-        <script>
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        </script>
-    @endif
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @livewireScripts()
