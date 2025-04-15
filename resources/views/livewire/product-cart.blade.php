@@ -14,19 +14,31 @@
         </thead>
         <tbody>
             @foreach ($cart as $index => $item)
-            {{-- @dd($item) --}}
-            <tr>
-                <td>{{ $item['name'] }}</td>
-                <td>
-                    <button wire:click="decrementQty({{ $index }})">-</button>
-                    {{ $item['qty'] }}
-                    <button wire:click="incrementQty({{ $index }})">+</button>
-                </td>
-                <td>${{ number_format($item['price'], 2) }}</td>
-                <td>${{ number_format($item['qty'] * $item['price'], 2) }}</td>
-                <td><button wire:click="removeProduct({{ $index }})">x</button></td>
-            </tr>
-        @endforeach
+                <tr class="align-middle">
+                    <td class="fw-medium">{{ $item['name'] }}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <button class="btn btn-sm btn-outline-primary rounded-circle p-1"
+                                wire:click="decrementQty({{ $index }})" style="width:28px; height:28px">
+                                <i class="bi bi-dash-lg"></i>
+                            </button>
+                            <span class="mx-2">{{ $item['qty'] }}</span>
+                            <button class="btn btn-sm btn-outline-primary rounded-circle p-1"
+                                wire:click="incrementQty({{ $index }})" style="width:28px; height:28px">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </td>
+                    <td>${{ number_format($item['price'], 2) }}</td>
+                    <td class="fw-semibold">${{ number_format($item['qty'] * $item['price'], 2) }}</td>
+                    <td>
+                        <button class="btn btn-link text-danger p-0 btn-remove-product" wire:click="removeProduct({{ $index }})"
+                            title="Remove item">
+                            <i class="bi bi-trash fs-5"></i>
+                        </button>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

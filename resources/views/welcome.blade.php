@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add this in your head section -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
         body {
             overflow-x: hidden;
@@ -30,6 +32,29 @@
         .product-list {
             height: calc(100vh - 290px);
             overflow-y: auto;
+            position: relative;
+        }
+
+        .product-list thead th {
+            position: sticky;
+            top: 0;
+            background: #f8f9fa;
+            /* Match your left-panel background color */
+            z-index: 1;
+            border-bottom: 2px solid #dee2e6;
+            padding: 0.75rem;
+            font-weight: 500;
+        }
+
+        .product-list tbody {
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Add this to ensure header stays above scroll content */
+        .product-list table {
+            border-collapse: separate;
+            border-spacing: 0;
         }
 
         /* Enhanced scroll styling */
@@ -110,6 +135,30 @@
         .rotate-180 {
             transform: rotate(180deg);
         }
+
+        .btn-outline-primary {
+            border-color: #2A4E6C;
+            color: #2A4E6C;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #2A4E6C;
+            color: white;
+        }
+
+        .btn-link.text-danger:hover {
+            color: #6e000b !important;
+            scale: 1.03
+        }
+        .btn-link.text-danger:active {
+            color: #ce0015 !important;
+            scale: 0.93
+        }
+
+        tr:hover {
+            background-color: #5f7f9e;
+        }
+
     </style>
 </head>
 
@@ -212,6 +261,7 @@
 
 
     </script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
