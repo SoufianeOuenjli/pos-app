@@ -4,7 +4,7 @@
             style="scrollbar-width: none; -ms-overflow-style: none; cursor: grab;" onmousedown="handleMouseDown(event)"
             onmouseup="handleMouseUp(event)" onmouseleave="handleMouseUp(event)" onmousemove="handleMouseMove(event)">
             <!-- Add your category buttons here -->
-            <button class="btn btn-outline-primary btn-sm flex-shrink-0">All Categories</button>
+            <button class="btn btn-primary btn-sm flex-shrink-0">All Categories</button>
             <button class="btn btn-outline-secondary btn-sm flex-shrink-0">Fulls</button>
             <!-- Add more categories -->
         </div>
