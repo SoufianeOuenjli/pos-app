@@ -71,11 +71,17 @@ class CartService
         }, 0);
     }
 
-    public function getTotal($discount , $shipping){
+    public function getTotalDiscountFix($discount , $shipping){
         $subTotal = $this->getSubTotal();
         $total = $subTotal - $discount + $shipping;
         return max(0, $total);
 
+    }
+
+    public function getTotalDiscountPercent($discount , $shipping){
+        $subTotal = $this->getSubTotal();
+        $total = $subTotal - ($subTotal * $discount / 100) + $shipping;
+        return max(0, $total);
     }
 
     public function getCount(): int

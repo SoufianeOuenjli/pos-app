@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Ajoutez ceci dans votre section head -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    @livewireStyles()
+    {{-- @livewireStyles() --}}
     <title>Commandes</title>
 </head>
 
@@ -26,7 +26,7 @@
 
         @livewire('commandes')
     </div>
-    
+
 
     <style>
         .card {
@@ -54,7 +54,7 @@
     {{--
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
     <script data-navigate-once src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" ></script>
-    @livewireScripts()
+    {{-- @livewireScripts() --}}
 </body>
 
 </html>

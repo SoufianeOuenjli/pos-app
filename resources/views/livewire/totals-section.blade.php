@@ -5,9 +5,9 @@
         </div> --}}
         <div class="col-8">
             <div class="input-group">
-                <select class="form-select w-30">
-                    <option>Fixe</option>
-                    <option>Pourcentage</option>
+                <select class="form-select w-30" wire:model.live="discountType" >
+                    <option value="fixe">Fixe</option>
+                    <option value="percentage">Pourcentage</option>
                 </select>
                 <input type="number" step="any" class="form-control" placeholder="Remise" wire:model.live.debounce.500ms="discount">
             </div>
