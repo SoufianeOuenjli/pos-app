@@ -11,7 +11,7 @@
                         <span class="badge bg-secondary">Stock: {{ $product->stock ?? 'N/A' }}</span>
                     </div>
                     <div class="text-center my-3">
-                        <img src="{{ $product->image ?? 'placeholder.jpg' }}" class="img-fluid" style="height: 100px" alt="product">
+                        <img src="{{ '/storage/' . ($product->image ?? 'products/placeholder.png') }}" class="img-fluid" style="height: 100px" alt="product">
                     </div>
                     <h6 class="card-title mb-1">{{ $product->nom }}</h6>
                     <small class="text-muted">Barcode: {{ $product->code_barre }}</small>

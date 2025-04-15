@@ -38,10 +38,17 @@ class ArticleFactory extends Factory
             'Sac à dos',
             'Casque audio Bluetooth',
         ];
+        $images = [
+            'products/1.png',
+            'products/2.png',
+            'products/4.jpg',
+            'products/5.jpg',
+        ];
 
         return [
             'nom' => $this->faker->randomElement($produits),
             'code_barre' => $this->faker->unique()->ean13(),
+            'image' => $this->faker->randomElement($images),
             // 'image' => $this->faker->imageUrl(640, 480, 'food'),
             'tva' => $this->faker->randomFloat(2, 0, 20),
             'prix_ht' => $this->faker->randomFloat(2, 1, 100),
