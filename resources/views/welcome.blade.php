@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @livewireStyles()
     <style>
-        :root{
+        :root {
             --primary: #6a1e96;
             --primary-hover: #e3d1ee;
             --primary-text-color: #ffffff;
@@ -18,16 +18,19 @@
             --primary-border-color: #290041;
             --primary-outline: #c390e0;
         }
-        .btn-primary{
+
+        .btn-primary {
             border-color: var(--primary-border-color);
             color: var(--primary-text-color);
             background-color: var(--primary);
         }
-        .btn-primary:hover{
+
+        .btn-primary:hover {
             border-color: var(--primary-border-color);
             color: var(--primary-text-hover-color);
             background-color: var(--primary-hover);
         }
+
         body {
             overflow-x: hidden;
         }
@@ -165,6 +168,7 @@
             color: var(--primary-text-hover-color) !important;
             border-color: var(--primary-border-color) !important;
         }
+
         .btn-outline-primary:active {
             background-color: var(--primary) !important;
             border-color: var(--primary-border-color) !important;
@@ -175,6 +179,7 @@
             color: #6e000b !important;
             scale: 1.03
         }
+
         .btn-link.text-danger:active {
             color: #ce0015 !important;
             scale: 0.93
@@ -183,7 +188,6 @@
         tr:hover {
             background-color: #5f7f9e;
         }
-
     </style>
 </head>
 
@@ -196,6 +200,11 @@
                 @livewire('client-warehouse-selector')
 
                 <!-- Product List -->
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 @livewire('product-cart')
 
                 <!-- Totals Section -->
@@ -286,6 +295,18 @@
 
 
     </script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        </script>
+    @endif
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     @livewireScripts()
 </body>

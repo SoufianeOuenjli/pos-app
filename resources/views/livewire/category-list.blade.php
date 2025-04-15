@@ -6,7 +6,7 @@
             <!-- Add your category buttons here -->
             <button class="btn btn-{{ !$selectedCategory ? 'primary' : 'outline-secondary' }} btn-sm flex-shrink-0"
                 wire:click="filterByCategory(null)">
-                All Categories
+                Toutes les Familles
             </button>
 
             @foreach ($familles as $famille)

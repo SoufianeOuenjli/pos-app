@@ -2,15 +2,15 @@
     onmouseup="handleMouseUpProduct(event)" onmouseleave="handleMouseUpProduct(event)"
     onmousemove="handleMouseMoveProduct(event)">
     {{-- <div class="cart-summary">
-        Items in cart: {{ $cartCount }} | Total: {{ number_format($cartTotal, 2) }}€
+        Articles dans le panier : {{ $cartCount }} | Total : {{ number_format($cartTotal, 2) }} DH
     </div> --}}
-    <!-- Your product table here -->
+    <!-- Votre tableau de produits ici -->
     <table class="table table-sm">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>QTY</th>
-                <th>Price</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix</th>
                 <th>Total</th>
                 <th>--</th>
             </tr>
@@ -33,11 +33,11 @@
                             </button>
                         </div>
                     </td>
-                    <td>${{ number_format($item['price'], 2) }}</td>
-                    <td class="fw-semibold">${{ number_format($item['qty'] * $item['price'], 2) }}</td>
+                    <td>{{ number_format($item['price'], 2) }} DH</td>
+                    <td class="fw-semibold">{{ number_format($item['qty'] * $item['price'], 2) }} DH</td>
                     <td>
                         <button class="btn btn-link text-danger p-0 btn-remove-product" wire:click="removeProduct({{ $index }})"
-                            title="Remove item">
+                            title="Supprimer l'article">
                             <i class="bi bi-trash fs-5"></i>
                         </button>
                     </td>

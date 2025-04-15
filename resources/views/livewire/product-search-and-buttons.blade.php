@@ -5,15 +5,15 @@
                 <i class="bi bi-search"></i>
             </span>
             <input type="search" wire:model.live.debounce.500ms="search" class="form-control border-start-0"
-                placeholder="Search products...">
+                placeholder="Rechercher des produits...">
         </div>
     </div>
     <div class="col-2">
         <div class="d-flex gap-2">
-            <button class="btn btn-outline-primary btn-icon  p-2" title="Hold">
+            <button class="btn btn-outline-primary btn-icon  p-2" title="En attente">
                 <i class="bi bi-clock fs-5"></i>
             </button>
-            <button class="btn btn-outline-primary btn-icon p-2" title="Cart">
+            <button class="btn btn-outline-primary btn-icon p-2" title="Panier">
                 <i class="bi bi-cart fs-5"></i>
             </button>
             <a href="{{ route('commandes') }}" wire:navigate class="btn btn-outline-primary btn-icon p-2">

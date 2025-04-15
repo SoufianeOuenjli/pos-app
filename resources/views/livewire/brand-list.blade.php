@@ -5,7 +5,7 @@
             onmouseup="handleMouseUp(event)" onmouseleave="handleMouseUp(event)" onmousemove="handleMouseMove(event)">
             <button class="btn btn-{{ !$selectedBrand ? 'primary' : 'outline-secondary' }} btn-sm flex-shrink-0"
                 wire:click="filterByBrand(null)">
-                All Brands
+                Toutes les Marques
             </button>
 
             @foreach ($brands as $brand)
