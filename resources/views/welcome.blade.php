@@ -10,6 +10,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     @livewireStyles()
     <style>
+        :root{
+            --primary: #6a1e96;
+            --primary-hover: #e3d1ee;
+            --primary-text-color: #ffffff;
+            --primary-text-hover-color: #44016b;
+            --primary-border-color: #290041;
+            --primary-outline: #c390e0;
+        }
+        .btn-primary{
+            border-color: var(--primary-border-color);
+            color: var(--primary-text-color);
+            background-color: var(--primary);
+        }
+        .btn-primary:hover{
+            border-color: var(--primary-border-color);
+            color: var(--primary-text-hover-color);
+            background-color: var(--primary-hover);
+        }
         body {
             overflow-x: hidden;
         }
@@ -143,8 +161,14 @@
         }
 
         .btn-outline-primary:hover {
-            background-color: #2A4E6C;
-            color: white;
+            background-color: var(--primary-outline) !important;
+            color: var(--primary-text-hover-color) !important;
+            border-color: var(--primary-border-color) !important;
+        }
+        .btn-outline-primary:active {
+            background-color: var(--primary) !important;
+            border-color: var(--primary-border-color) !important;
+            color: white !important;
         }
 
         .btn-link.text-danger:hover {

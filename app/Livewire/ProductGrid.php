@@ -13,10 +13,31 @@ class ProductGrid extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $search = '';
-    protected $queryString = ['search'];
+    public $selectedBrand = null;
+    public $selectedCategory = null;
+    protected $queryString = ['search', 'selectedBrand', 'selectedCategory'];
+
+    protected $listeners = [
+        'cartUpdated' => '$refresh',
+        'brandFilterUpdated' => 'handleBrandFilter',
+        'categoryFilterUpdated' => 'handleCategoryFilter'
+    ];
+
+    public function handleBrandFilter($brandId)
+    {
+        $this->selectedBrand = $brandId;
+        $this->resetPage();
+    }
+    public function handleCategoryFilter($categoryId)
+    {
+        $this->selectedCategory = $categoryId;
+        $this->resetPage();
+    }
+
 
     public function addToCart($productId)
     {
+
         $product = Article::findOrFail($productId);
 
         app(CartService::class)->addItem([
@@ -33,10 +54,19 @@ class ProductGrid extends Component
 
     public function render()
     {
-        $products = Article::query()
-            ->where('nom', 'like', '%' . $this->search . '%')
-            ->orWhere('code_barre', 'like', '%' . $this->search . '%')
-            ->paginate(12);
+        $query = Article::query()
+            ->when($this->selectedBrand, function ($q) {
+                $q->where('marque_id', $this->selectedBrand);
+            })
+            ->when($this->selectedCategory, function ($q) {
+                $q->where('famille_id', $this->selectedCategory);
+            })
+            ->where(function ($q) {
+                $q->where('nom', 'like', '%' . $this->search . '%')
+                    ->orWhere('code_barre', 'like', '%' . $this->search . '%');
+            });
+
+        $products = $query->paginate(12);
 
         return view('livewire.product-grid', [
             'products' => $products,

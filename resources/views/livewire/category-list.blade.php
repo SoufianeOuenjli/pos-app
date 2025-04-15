@@ -4,9 +4,18 @@
             style="scrollbar-width: none; -ms-overflow-style: none; cursor: grab;" onmousedown="handleMouseDown(event)"
             onmouseup="handleMouseUp(event)" onmouseleave="handleMouseUp(event)" onmousemove="handleMouseMove(event)">
             <!-- Add your category buttons here -->
-            <button class="btn btn-primary btn-sm flex-shrink-0">All Categories</button>
-            <button class="btn btn-outline-secondary btn-sm flex-shrink-0">Fulls</button>
-            <!-- Add more categories -->
+            <button class="btn btn-{{ !$selectedCategory ? 'primary' : 'outline-secondary' }} btn-sm flex-shrink-0"
+                wire:click="filterByCategory(null)">
+                All Categories
+            </button>
+
+            @foreach ($familles as $famille)
+                <button
+                    class="btn btn-{{ $selectedCategory == $famille->id ? 'primary' : 'outline-secondary' }} btn-sm flex-shrink-0"
+                    wire:click="filterByCategory({{ $famille->id }})">
+                    {{ $famille->famille }}
+                </button>
+            @endforeach
         </div>
         <div class="fade-overlay end-0"></div>
     </div>

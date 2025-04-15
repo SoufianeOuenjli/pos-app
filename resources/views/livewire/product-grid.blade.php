@@ -7,7 +7,7 @@
             <div class="card product-card h-100" wire:click="addToCart({{ $product->id }})" style="cursor: pointer;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between">
-                        <span class="badge bg-primary">${{ number_format($product->prix_ht, 2) }}</span>
+                        <span class="badge btn-primary">${{ number_format($product->prix_ht, 2) }}</span>
                         <span class="badge bg-secondary">Stock: {{ $product->stock ?? 'N/A' }}</span>
                     </div>
                     <div class="text-center my-3">
